@@ -1,0 +1,23 @@
+version: "3"
+#fusionne les deux images crée
+services: 
+
+  # Ensuite sert à se connecter à la base de donnée
+  manager:
+    build: .
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "mdp"
+      POSTGRES_DB: "DB"
+      CSV_FILENAME: "data.csv"
+  
+    # Il va crée une base de donnée
+  db:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "mdp"
+      POSTGRES_DB: "DB"
+
